@@ -18,3 +18,11 @@ export const projectCreateValidation = [
 export const projectUpdateTitleValidation = [
     body('title').isLength({min: 5}),
 ]
+
+export const descriptionCreateValidation = [
+    body('title').isLength({min: 5}),
+]
+
+export const descriptionUpdateValidation = [
+    body('title').isLength({min: 5}),
+]

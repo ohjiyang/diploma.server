@@ -9,10 +9,13 @@ import {
     loginValidation,
     projectCreateValidation,
     projectUpdateTitleValidation,
+    descriptionCreateValidation,
+    descriptionUpdateValidation
 } from "./validations.js";
 //controllers
 import * as UserController from "./controllers/UserController.js"
 import * as ProjectController from "./controllers/ProjectController.js"
+import * as DescriptionController from "./controllers/DescriptionController.js"
 
 mongoose
     .connect('mongodb+srv://nothinnnew:Fkon0071223@cluster0.tr3ppkm.mongodb.net/somenote?retryWrites=true&w=majority')
@@ -37,6 +40,11 @@ app.get("/projects/:id", CheckAuth, ProjectController.getOne)
 app.patch("/projects/:id", CheckAuth, projectUpdateTitleValidation, ProjectController.updateTitle)
 app.patch("/projects/add_user/:id", CheckAuth, ProjectController.updateUser)
 app.delete("/projects/:id", CheckAuth, ProjectController.remove)
+//Descriptions
+app.post("/descriptions/", CheckAuth, descriptionCreateValidation, DescriptionController.create)
+app.get("/descriptions/:id", CheckAuth, DescriptionController.getAll)
+app.patch("/descriptions/:id", CheckAuth, descriptionUpdateValidation, DescriptionController.updateTitle)
+app.delete("/descriptions/:id", CheckAuth, DescriptionController.remove)
 app.listen(4444, (err) => {
     if (err) {
         console.log(err)
