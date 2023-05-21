@@ -10,3 +10,11 @@ export const loginValidation = [
     body('username').isLength({min: 6}),
     body('password').isLength({min: 8}),
 ]
+
+export const projectCreateValidation = [
+    body('title').isLength({min: 5}),
+]
+
+export const projectUpdateTitleValidation = [
+    body('title').isLength({min: 5}),
+]
