@@ -26,3 +26,14 @@ export const descriptionCreateValidation = [
 export const descriptionUpdateValidation = [
     body('title').isLength({min: 5}),
 ]
+
+export const taskCreateValidation = [
+    body('title').isLength({min: 5}),
+]
+
+export const statusCreateValidation = [
+    body('title').isLength({min: 5}),
+]
+export const commentCreateValidation = [
+    body('title').isLength({min: 5}),
+]
