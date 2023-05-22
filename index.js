@@ -22,6 +22,7 @@ import * as DescriptionController from "./controllers/DescriptionController.js"
 import * as TaskController from "./controllers/TaskController.js"
 import * as StatusController from "./controllers/StatusController.js"
 import * as CommentController from "./controllers/CommentController.js"
+import * as MonitoringController from "./controllers/MonitoringController.js"
 mongoose
     .connect('mongodb+srv://nothinnnew:Fkon0071223@cluster0.tr3ppkm.mongodb.net/somenote?retryWrites=true&w=majority')
     .then(() => console.log("DB OK"))
@@ -64,6 +65,9 @@ app.delete("/status/:id", CheckAuth, StatusController.remove)
 //Comments
 app.post("/comments/", CheckAuth, commentCreateValidation, CommentController.create)
 app.get("/comments/all/:id", CheckAuth, CommentController.getAll)
+//Monitoring
+app.post("/monitoring/status/", CheckAuth, MonitoringController.getAll)
+app.get("/monitoring/:id", CheckAuth, MonitoringController.getChart)
 app.listen(4444, (err) => {
     if (err) {
         console.log(err)
