@@ -71,6 +71,36 @@ export const updateStatus = async (req, res) => {
     }
 }
 
+export const updateTitle = async (req, res) => {
+    try {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            return res.status(400).json(errors.array())
+        }
+
+        const doc = await TaskModel.findOneAndUpdate(
+            {
+                _id: req.params.id,
+            },
+            {
+                title: req.body.title
+            },
+            {
+                new: true
+            }
+        )
+
+        const task = await doc.save()
+
+        res.json({task})
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            message: "Не удалось получить задачи"
+        })
+    }
+}
+
 export const remove = async (req, res) => {
     try {
         const task = await TaskModel.findOneAndDelete(
